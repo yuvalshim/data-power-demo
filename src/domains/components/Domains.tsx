@@ -30,16 +30,12 @@ const PanelsWrapper = styled.div`
   height: 100%;
   grid-gap: var(--gap-md);
   max-height: calc(100vh - 175px);
-  grid-template-columns: 1fr 100px 1fr;
+  grid-template-columns: 1fr 1fr;
 `;
 
 const HeaderActions = styled(FlexRowSpaceBetween)`
   gap: var(--gap-md);
   margin-bottom: var(--gap-md);
-`;
-
-const PanelActions = styled(FlexColumnCenter)`
-  gap: var(--gap-md);
 `;
 
 type ActionType = "deploy" | "remove";
@@ -48,11 +44,6 @@ const Domains = () => {
   const [apis, setApis] = useState<
     { id: string; name: string; isDeployed?: boolean }[]
   >(domains);
-
-  const [actionType, setActionType] = useState<ActionType>();
-
-  const [selectedApisIds, setSelectApisIds] = useState<string[]>([]);
-  const [selectedDeployedIds, setDeployedIds] = useState<string[]>([]);
 
   const toggleDeployedIds = (ids: string[], value: boolean) =>
     setApis((prev) =>
@@ -70,22 +61,12 @@ const Domains = () => {
 
   const apisDeployed = apis.filter((item) => item.isDeployed);
 
-  const onActionClick = async (action: ActionType) => {
-    setActionType(action);
-
+  const onActionClick = async (action: ActionType, selectedIds: string[]) => {
     await sleep(2000);
 
-    if (action === "deploy") {
-      toggleDeployedIds(selectedApisIds, true);
-      setSelectApisIds([]);
-    }
+    if (action === "deploy") toggleDeployedIds(selectedIds, true);
 
-    if (action === "remove") {
-      toggleDeployedIds(selectedDeployedIds, false);
-      setDeployedIds([]);
-    }
-
-    setActionType(undefined);
+    if (action === "remove") toggleDeployedIds(selectedIds, false);
   };
 
   return (
@@ -100,35 +81,13 @@ const Domains = () => {
         <DomainsPanel
           title="Apis"
           items={apisItems}
-          selectedIds={selectedApisIds}
-          setSelectedIds={setSelectApisIds}
-          isSubmitting={actionType === "deploy"}
+          onSubmit={(selectedIs) => onActionClick("deploy", selectedIs)}
         />
-
-        <PanelActions>
-          <ArrowButton
-            direction="right"
-            disabled={selectedApisIds.length === 0}
-            onClick={() => onActionClick("deploy")}
-          >
-            Deploy
-          </ArrowButton>
-
-          <ArrowButton
-            direction="left"
-            disabled={selectedDeployedIds.length === 0}
-            onClick={() => onActionClick("remove")}
-          >
-            Remove
-          </ArrowButton>
-        </PanelActions>
 
         <DomainsPanel
           title="Deployed"
           items={apisDeployed}
-          setSelectedIds={setDeployedIds}
-          selectedIds={selectedDeployedIds}
-          isSubmitting={actionType === "remove"}
+          onSubmit={(selectedIs) => onActionClick("remove", selectedIs)}
         />
       </PanelsWrapper>
     </Page>

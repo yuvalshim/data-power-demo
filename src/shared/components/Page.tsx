@@ -6,8 +6,6 @@ import { FlexColumn } from "~/shared/theme/flexHelpers";
 
 const MaxWidthWrapper = styled.div`
   width: 100%;
-  margin: 0 auto;
-  max-width: 1100px;
 `;
 
 const Wrapper = styled(FlexColumn)`
@@ -15,9 +13,9 @@ const Wrapper = styled(FlexColumn)`
 `;
 
 const Header = styled(FlexColumn)`
-  padding: var(--gap-xl) 0;
   background-color: var(--white);
-  box-shadow: rgb(0 0 0 / 15%) 0px 1px 3px 0px;
+  box-shadow: var(--shadow-100);
+  padding: var(--gap-xl) var(--gap-xxl);
 `;
 
 const HeaderContent = styled(MaxWidthWrapper)``;
@@ -26,7 +24,7 @@ const Title = styled(Headline1)``;
 
 const Content = styled(MaxWidthWrapper)`
   height: 100%;
-  padding: var(--gap-xl) 0;
+  padding: var(--gap-xxl);
 `;
 
 interface PageHeaderProps {

@@ -7,18 +7,27 @@ const GlobalStyle = createGlobalStyle`
  
     :root {
       --color-primary: #4a148c;
+      --color-primary-100: rgb(106, 27, 154);
+
       --color-secondary: #091547;
+      --color-secondary-100: #12296D;
+      --color-secondary-900: #0d1a52;
+
       --color-background: #F0F0F0;
+
+      --color-gray-100: hsl(225deg, 25%, 95%);
+      --color-gray-200: hsl(225deg, 16%, 90%);
+      --color-gray-300: hsl(225deg, 8%, 80%);
 
       --white: #fff;
 
-
+      --shadow-100: rgb(0 0 0 / 15%) 0px 1px 3px 0px;
 
       --gap-xs: 5px;
       --gap-sm: 10px;
       --gap-md: 15px;
       --gap-xl: 20px;
-      --gap-xxl: 25px;
+      --gap-xxl: 40px;
     }
 
 

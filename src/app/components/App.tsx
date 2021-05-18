@@ -1,13 +1,29 @@
 import React from "react";
-import GlobalStyle from "~/shared/theme/GlobalStyle";
+import { Switch, Route } from "react-router-dom";
+import styled from "styled-components";
 
+import Sidebar from "./Sidebar";
 import { Domains } from "~/domains";
+import { Settings } from "~/settings";
+
+const Wrapper = styled.div`
+  height: 100%;
+  padding-left: 65px;
+`;
 
 const App = () => (
-  <>
-    <GlobalStyle />
+  <Wrapper>
+    <Sidebar />
 
-    <Domains />
-  </>
+    <Switch>
+      <Route path="/settings">
+        <Settings />
+      </Route>
+
+      <Route path="/">
+        <Domains />
+      </Route>
+    </Switch>
+  </Wrapper>
 );
 export default App;

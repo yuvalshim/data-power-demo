@@ -13,11 +13,10 @@ import {
   SimpleTextBold,
   SimpleText,
 } from "~/shared/theme/typography";
-import { Expand } from "@styled-icons/fa-solid/Expand";
-import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 
-import { Card, SubmittingMask } from "~/shared/theme/styled";
-import { ButtonLink } from "~/shared/theme/buttons";
+import { Card } from "~/shared/components";
+import { SubmittingMask } from "~/shared/theme/styled";
+import { ButtonLink, Button } from "~/shared/theme/buttons";
 
 const IconsWrapper = styled(FlexMiddle)`
   gap: 15px;
@@ -32,34 +31,15 @@ const IconsWrapper = styled(FlexMiddle)`
   }
 `;
 
-const ExpandIcon = styled(Expand)`
-  height: 15px;
-`;
-
-const CloseIcon = styled(CloseOutline)`
-  height: 20px;
-`;
-
 const Title = styled(Headline2)`
   padding-left: 15px;
   margin-bottom: 20px;
 `;
 
-const DomainsCard = styled(Card)<{ isExpanded: boolean }>`
+const DomainsCard = styled(Card)`
   ${flexColumn}
   height: 100%;
   width: 100%;
-
-  ${({ isExpanded }) =>
-    isExpanded &&
-    css`
-      z-index: 99;
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      bottom: 10px;
-      left: 10px;
-    `}
 `;
 
 const ScrollWrapper = styled(FlexColumn)`
@@ -106,20 +86,15 @@ const Total = styled(SimpleTextBold)`
 interface DomainsPanelProps {
   title: string;
   items: Array<{ name: string; id: string }>;
-  selectedIds: string[];
-  setSelectedIds: (ids: string[]) => void;
+  onSubmit: (selectedIs: string[]) => void;
   isSubmitting?: boolean;
 }
 
-const DomainsPanel = ({
-  title,
-  items,
-  selectedIds,
-  setSelectedIds,
-  isSubmitting = false,
-}: DomainsPanelProps) => {
+const DomainsPanel = ({ title, items, onSubmit }: DomainsPanelProps) => {
+  const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
   const totalSelected = selectedIds.length;
-  const [isExpanded, setIsExpanded] = React.useState(false);
 
   const isSelected = (id: string) => selectedIds.includes(id);
 
@@ -131,8 +106,6 @@ const DomainsPanel = ({
     setSelectedIds(newIds);
   };
 
-  const toggleExpanded = () => setIsExpanded((prev) => !prev);
-
   const isAllSelected = items.length === selectedIds.length;
 
   const toggleSelectAll = () =>
@@ -140,29 +113,25 @@ const DomainsPanel = ({
       ? setSelectedIds([])
       : setSelectedIds(items.map(({ id }) => id));
 
+  const handleOnSubmit = async () => {
+    setIsSubmitting(true);
+    await onSubmit(selectedIds);
+
+    setSelectedIds([]);
+    setIsSubmitting(false);
+  };
+
   return (
-    <DomainsCard isExpanded={isExpanded}>
+    <DomainsCard>
       <Title>{title}</Title>
 
       <RowHeader>
         <SimpleTextBold>Host Name</SimpleTextBold>
 
-        {isExpanded && (
-          <>
-            <SimpleTextBold>Domain</SimpleTextBold>
-            <SimpleTextBold>Type</SimpleTextBold>
-            <SimpleTextBold>Action Result</SimpleTextBold>
-          </>
-        )}
-
         <IconsWrapper>
           <ButtonLink color="secondary" onClick={toggleSelectAll}>
             {isAllSelected ? "Unselect" : "Select All"}
           </ButtonLink>
-
-          <div onClick={toggleExpanded}>
-            {isExpanded ? <CloseIcon /> : <ExpandIcon />}
-          </div>
         </IconsWrapper>
       </RowHeader>
 
@@ -184,6 +153,8 @@ const DomainsPanel = ({
         <Total>
           Total Selected: <Headline3>{totalSelected}</Headline3>
         </Total>
+
+        <Button onClick={handleOnSubmit}>Save</Button>
       </BottomActionsWrapper>
 
       <SubmittingMask visible={isSubmitting}>Submitting...</SubmittingMask>
