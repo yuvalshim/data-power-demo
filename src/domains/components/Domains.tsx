@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Page } from "~/shared/components";
-import {
-  FlexColumnCenter,
-  FlexRowSpaceBetween,
-} from "~/shared/theme/flexHelpers";
-import { Button, ArrowButton } from "~/shared/theme/buttons";
+import { FlexRowSpaceBetween } from "~/shared/theme/flexHelpers";
+import { Button } from "~/shared/theme/buttons";
 import { Gap } from "~/shared/theme/styled";
 import DomainsPanel from "./DomainsPanel";
 

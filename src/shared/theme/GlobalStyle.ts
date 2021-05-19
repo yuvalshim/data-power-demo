@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
       --color-gray-100: hsl(225deg, 25%, 95%);
       --color-gray-200: hsl(225deg, 16%, 90%);
       --color-gray-300: hsl(225deg, 8%, 80%);
+      --color-gray-400: hsl(225deg, 8%, 70%);
+      --color-gray-500: hsl(225deg, 7%, 60%);
+      --color-gray-600: hsl(225deg, 15%, 50%);
+      --color-gray-700: hsl(225deg, 12%, 40%);
 
       --white: #fff;
 

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { FlexColumn, flexCenter } from "~/shared/theme/flexHelpers";
 import LogoPng from "~/shared/assets/logo.png";
@@ -28,6 +28,7 @@ const IconTab = styled(NavLink)`
   ${flexCenter}
   width: 100%;
   height: 50px;
+  transition: background-color 0.3s ease;
 
   &.isActive {
     background-color: var(--color-primary-100);
@@ -47,26 +48,28 @@ const IconTab = styled(NavLink)`
   }
 `;
 
-const SettingsIcon = styled(SettingsOutline)`
+const iconCss = css`
   height: 22px;
   color: var(--color-gray-200);
 `;
 
+const SettingsIcon = styled(SettingsOutline)`
+  ${iconCss}
+`;
+
 const DomainsIcon = styled(AltRoute)`
-  height: 22px;
-  color: var(--color-gray-200);
+  ${iconCss}
 `;
 
 const Sidebar = () => (
   <Wrapper>
     <Logo />
+    <IconTab to="/settings" activeClassName="isActive">
+      <SettingsIcon />
+    </IconTab>
 
     <IconTab to="/domains" activeClassName="isActive">
       <DomainsIcon />
-    </IconTab>
-
-    <IconTab to="/settings" activeClassName="isActive">
-      <SettingsIcon />
     </IconTab>
   </Wrapper>
 );
