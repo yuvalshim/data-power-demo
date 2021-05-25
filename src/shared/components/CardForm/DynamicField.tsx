@@ -22,9 +22,15 @@ const Label = styled.label`
   color: var(--color-gray-800);
 `;
 
+export interface InputsValuesTypes {
+  text: string;
+  checkbox: boolean;
+  file: any[];
+}
+
 export interface Field {
   name: string;
-  type: "text" | "checkbox" | "file";
+  type: keyof InputsValuesTypes;
   registerOptions?: RegisterOptions;
 }
 

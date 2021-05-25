@@ -6,7 +6,7 @@ import { Card } from "~/shared/components";
 import { Button } from "~/shared/theme/buttons";
 import { SimpleTextBold } from "~/shared/theme/typography";
 import { FlexRowSpaceBetween, FlexMiddle } from "~/shared/theme/flexHelpers";
-import DynamicField, { Field } from "./DynamicField";
+import DynamicField, { Field, InputsValuesTypes } from "./DynamicField";
 
 const FieldsWrapper = styled(FlexRowSpaceBetween)`
   gap: var(--gap-xxl);
@@ -22,23 +22,21 @@ const Footer = styled(FlexMiddle)`
   justify-content: flex-end;
 `;
 
-interface SettingsPanelProps {
-  title: string;
-  description?: string;
-  fields: Field[];
-  onSubmit: (values: any) => void;
-}
-
-// type ParametersRecord<
-//   T extends (values: Record<string, any>) => any
-// > = T extends (values: infer P) => any ? P : never;
-
-function CardForm({
+function CardForm<Fields extends readonly Field[]>({
   title,
   description,
   fields,
   onSubmit,
-}: SettingsPanelProps) {
+}: {
+  title: string;
+  description?: string;
+  fields: Fields;
+  onSubmit: (
+    values: {
+      [N in Fields[number]["name"]]: InputsValuesTypes[Fields[number]["type"]];
+    }
+  ) => void;
+}) {
   const {
     register,
     handleSubmit,

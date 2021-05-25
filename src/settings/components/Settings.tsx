@@ -8,52 +8,43 @@ const CardsWrapper = styled.div`
   grid-template-columns: repeat(2, 1fr);
 `;
 
-interface TokenFields {
-  Token: string;
-  Debug: boolean;
-}
-
-interface CollectorFields {
-  CollectorFiles: any[];
-}
-
 const Settings = () => {
-  const onTokenSubmit = (values: TokenFields) => console.log(values);
-
-  const onCollectorSubmit = (values: CollectorFields) => console.log(values);
-
   return (
     <Page title="Collector Settings">
       <CardsWrapper>
         <CardForm
           title="Token"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          fields={[
-            {
-              type: "text",
-              name: "Token",
-              registerOptions: {
-                required: true,
+          fields={
+            [
+              {
+                type: "text",
+                name: "Token",
+                registerOptions: {
+                  required: true,
+                },
               },
-            },
-            {
-              type: "checkbox",
-              name: "Debug",
-            },
-          ]}
-          onSubmit={onTokenSubmit}
+              {
+                type: "checkbox",
+                name: "Debug",
+              },
+            ] as const
+          }
+          onSubmit={(values) => console.log(values)}
         />
 
         <CardForm
           title="Collector files"
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          fields={[
-            {
-              type: "file",
-              name: "CollectorFiles",
-            },
-          ]}
-          onSubmit={onCollectorSubmit}
+          fields={
+            [
+              {
+                type: "file",
+                name: "CollectorFiles",
+              },
+            ] as const
+          }
+          onSubmit={(values) => console.log(values)}
         />
       </CardsWrapper>
     </Page>
