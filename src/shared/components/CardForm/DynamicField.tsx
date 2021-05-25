@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FlexColumn } from "~/shared/theme/flexHelpers";
-import { UseFormRegister } from "react-hook-form";
+import { UseFormRegister, RegisterOptions } from "react-hook-form";
 
 const Wrapper = styled(FlexColumn)`
   width: 100%;
@@ -16,26 +16,27 @@ const Wrapper = styled(FlexColumn)`
 `;
 
 const Label = styled.label`
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: bold;
   margin-bottom: var(--gap-sm);
-  color: var(--color-gray-600);
+  color: var(--color-gray-800);
 `;
 
-export interface Input {
+export interface Field {
   name: string;
-  required?: boolean;
   type: "text" | "checkbox" | "file";
+  registerOptions?: RegisterOptions;
 }
 
 const DynamicField = ({
   type,
   name,
-  required,
+  registerOptions,
   register,
-}: Input & {
+}: Field & {
   register: UseFormRegister<Record<string, any>>;
 }) => {
-  const registerConfig = register(name, { required });
+  const registerConfig = register(name, registerOptions);
 
   return (
     <Wrapper>

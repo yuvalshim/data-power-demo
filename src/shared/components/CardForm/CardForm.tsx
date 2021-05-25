@@ -1,19 +1,19 @@
 import * as React from "react";
 import styled from "styled-components";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { Card } from "~/shared/components";
 import { Button } from "~/shared/theme/buttons";
 import { SimpleTextBold } from "~/shared/theme/typography";
 import { FlexRowSpaceBetween, FlexMiddle } from "~/shared/theme/flexHelpers";
-import DynamicField, { Input } from "./DynamicField";
+import DynamicField, { Field } from "./DynamicField";
 
 const FieldsWrapper = styled(FlexRowSpaceBetween)`
   gap: var(--gap-xxl);
 `;
 
 const Description = styled(SimpleTextBold)`
-  color: var(--color-gray-900);
+  color: var(--color-gray-700);
   margin-bottom: var(--gap-xl);
 `;
 
@@ -22,19 +22,23 @@ const Footer = styled(FlexMiddle)`
   justify-content: flex-end;
 `;
 
-interface SettingsPanelProps<Inputs extends readonly Input[]> {
+interface SettingsPanelProps {
   title: string;
-  description: string;
-  inputs: Inputs;
-  onSubmit: SubmitHandler<Record<Inputs[number]["name"], any>>;
+  description?: string;
+  fields: Field[];
+  onSubmit: (values: any) => void;
 }
 
-function CardForm<Inputs extends readonly Input[]>({
+// type ParametersRecord<
+//   T extends (values: Record<string, any>) => any
+// > = T extends (values: infer P) => any ? P : never;
+
+function CardForm({
   title,
   description,
-  inputs,
+  fields,
   onSubmit,
-}: SettingsPanelProps<Inputs>) {
+}: SettingsPanelProps) {
   const {
     register,
     handleSubmit,
@@ -44,11 +48,15 @@ function CardForm<Inputs extends readonly Input[]>({
   return (
     <Card title={title}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Description>{description}</Description>
+        {description && <Description>{description}</Description>}
 
         <FieldsWrapper>
-          {inputs.map((input) => (
-            <DynamicField key={input.name} {...input} register={register} />
+          {fields.map((fieldConfig) => (
+            <DynamicField
+              key={fieldConfig.name}
+              {...fieldConfig}
+              register={register}
+            />
           ))}
         </FieldsWrapper>
 

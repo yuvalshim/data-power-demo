@@ -13,6 +13,10 @@ const GlobalStyle = createGlobalStyle`
       --color-secondary-100: #12296D;
       --color-secondary-900: #0d1a52;
 
+      --color-success: #00a699;
+      --color-error: #F61515;
+      --color-warning: #FFCF00;
+
       --color-background: #F0F0F0;
 
       --color-gray-100: hsl(225deg, 25%, 95%);
@@ -25,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
 
       --white: #fff;
 
-      --shadow-100: rgb(0 0 0 / 15%) 0px 1px 3px 0px;
+      --shadow: rgb(0 0 0 / 15%) 0px 1px 3px 0px;
 
       --gap-xs: 5px;
       --gap-sm: 10px;
@@ -64,6 +68,7 @@ const GlobalStyle = createGlobalStyle`
      * div {
        position: relative;
      }
+
 `;
 
 export default GlobalStyle;
