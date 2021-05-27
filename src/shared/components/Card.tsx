@@ -6,7 +6,7 @@ import { Headline3 } from "~/shared/theme/typography";
 const Wrapper = styled.div`
   border-radius: 6px;
   background-color: var(--white);
-  box-shadow: var(--shadow-100);
+  box-shadow: var(--shadow);
 `;
 
 const Header = styled(FlexRowSpaceBetween)`

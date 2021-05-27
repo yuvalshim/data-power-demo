@@ -5,10 +5,10 @@ import { useForm } from "react-hook-form";
 import { Card } from "~/shared/components";
 import { Button } from "~/shared/theme/buttons";
 import { SimpleTextBold } from "~/shared/theme/typography";
-import { FlexRowSpaceBetween, FlexMiddle } from "~/shared/theme/flexHelpers";
+import { FlexColumn, FlexMiddle } from "~/shared/theme/flexHelpers";
 import DynamicField, { Field, InputsValuesTypes } from "./DynamicField";
 
-const FieldsWrapper = styled(FlexRowSpaceBetween)`
+const FieldsWrapper = styled(FlexColumn)`
   gap: var(--gap-xxl);
 `;
 

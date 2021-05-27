@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 
 import Sidebar from "./Sidebar";
@@ -24,6 +24,8 @@ const App = () => (
       <Route path="/domains">
         <Domains />
       </Route>
+
+      <Route path="/" render={() => <Redirect to={`/settings`} />} />
     </Switch>
   </Wrapper>
 );
