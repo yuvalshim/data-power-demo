@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Page } from "~/shared/components";
 import { FlexRowSpaceBetween } from "~/shared/theme/flexHelpers";
 import { Button } from "~/shared/theme/buttons";
-import { Gap } from "~/shared/theme/styled";
+
 import DomainsPanel from "./DomainsPanel";
 
 function sleep(timeout: number) {
@@ -69,9 +69,7 @@ const Domains = () => {
   return (
     <Page title="Domains">
       <HeaderActions>
-        <Gap size="md">
-          <Button>Show APIs</Button>
-        </Gap>
+        <Button>Show APIs</Button>
       </HeaderActions>
 
       <PanelsWrapper>

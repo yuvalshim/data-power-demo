@@ -45,7 +45,7 @@ function CardForm<Fields extends readonly Field[]>({
 
   return (
     <Card title={title}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit as any)}>
         {description && <Description>{description}</Description>}
 
         <FieldsWrapper>

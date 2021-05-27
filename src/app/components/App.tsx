@@ -6,16 +6,15 @@ import Sidebar from "./Sidebar";
 import { Domains } from "~/domains";
 import { Settings } from "~/settings";
 
-const sideBarWidth = 65;
-
 const Wrapper = styled.div`
+  --sidebar-width: 65px;
   height: 100%;
-  padding-left: ${sideBarWidth}px;
+  padding-left: var(--sidebar-width);
 `;
 
 const App = () => (
   <Wrapper>
-    <Sidebar width={sideBarWidth} />
+    <Sidebar />
 
     <Switch>
       <Route path="/settings">

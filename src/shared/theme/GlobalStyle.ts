@@ -1,7 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-export type Sizes = "xs" | "sm" | "md" | "xl" | "xxl";
-
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Barlow:300,400,500,700');
  

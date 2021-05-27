@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { FlexCenter } from "~/shared/theme/flexHelpers";
-import { Sizes } from "~/shared/theme/GlobalStyle";
 
 export const SubmittingMask = styled(FlexCenter)<{ visible: boolean }>`
   z-index: 5;
@@ -13,9 +12,4 @@ export const SubmittingMask = styled(FlexCenter)<{ visible: boolean }>`
   transition: all 0.2s ease-in-out;
   opacity: ${({ visible }) => (visible ? 0.8 : 0)};
   ${({ visible }) => !visible && "pointer-events: none;"}
-`;
-
-export const Gap = styled.div<{ size: Sizes }>`
-  display: flex;
-  gap: ${({ size = "sm" }) => `var(--gap-${size})`};
 `;

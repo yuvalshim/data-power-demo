@@ -7,12 +7,12 @@ import LogoPng from "~/shared/assets/logo.png";
 import { SettingsOutline } from "@styled-icons/evaicons-outline/SettingsOutline";
 import { AltRoute } from "@styled-icons/material/AltRoute";
 
-const Wrapper = styled(FlexColumn)<{ width: number }>`
+const Wrapper = styled(FlexColumn)`
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
-  width: ${({ width }) => width}px;
+  width: var(--sidebar-width);
   background-color: var(--color-secondary);
 `;
 
@@ -61,8 +61,8 @@ const DomainsIcon = styled(AltRoute)`
   ${iconCss}
 `;
 
-const Sidebar = ({ width }: { width: number }) => (
-  <Wrapper width={width}>
+const Sidebar = () => (
+  <Wrapper>
     <Logo />
     <IconTab to="/settings" activeClassName="isActive">
       <SettingsIcon />
