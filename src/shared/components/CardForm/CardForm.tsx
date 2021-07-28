@@ -22,6 +22,11 @@ const Footer = styled(FlexMiddle)`
   justify-content: flex-end;
 `;
 
+type InputTypeByName<
+  Fields extends readonly Field[],
+  Name
+> = InputsValuesTypes[Extract<Fields[number], { name: Name }>["type"]];
+
 function CardForm<Fields extends readonly Field[]>({
   title,
   description,
@@ -33,7 +38,7 @@ function CardForm<Fields extends readonly Field[]>({
   fields: Fields;
   onSubmit: (
     values: {
-      [N in Fields[number]["name"]]: InputsValuesTypes[Fields[number]["type"]];
+      [Name in Fields[number]["name"]]: InputTypeByName<Fields, Name>;
     }
   ) => void;
 }) {

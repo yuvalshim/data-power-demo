@@ -7,7 +7,7 @@ import { Domains } from "~/domains";
 import { Settings } from "~/settings";
 
 const Wrapper = styled.div`
-  --sidebar-width: 65px;
+  --sidebar-width: 50px;
   height: 100%;
   padding-left: var(--sidebar-width);
 `;

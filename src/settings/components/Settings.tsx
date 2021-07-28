@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Page, CardForm } from "~/shared/components";
+import { Headline2 } from "~/shared/theme/typography";
 
 const CardsWrapper = styled.div`
   display: grid;
@@ -8,9 +9,16 @@ const CardsWrapper = styled.div`
   grid-template-columns: repeat(2, 1fr);
 `;
 
+const Title = styled(Headline2)`
+  color: var(--color-warning);
+  margin-bottom: var(--gap-xl);
+`;
+
 const Settings = () => {
   return (
     <Page title="Collector Settings">
+      <Title>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Title>
+
       <CardsWrapper>
         <CardForm
           title="Token"
@@ -19,14 +27,15 @@ const Settings = () => {
             [
               {
                 type: "text",
-                name: "Token",
-                registerOptions: {
-                  required: true,
-                },
+                name: "token",
               },
               {
                 type: "checkbox",
-                name: "Debug",
+                name: "debug",
+              },
+              {
+                type: "file",
+                name: "collectorFiles",
               },
             ] as const
           }
