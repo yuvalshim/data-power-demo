@@ -25,7 +25,7 @@ const Label = styled.label`
 export interface InputsValuesTypes {
   text: string;
   checkbox: boolean;
-  file: any[];
+  file: FileList[];
 }
 
 export interface Field {

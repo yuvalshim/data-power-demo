@@ -10,14 +10,13 @@ const CardsWrapper = styled.div`
 `;
 
 const Title = styled(Headline2)`
-  color: var(--color-warning);
   margin-bottom: var(--gap-xl);
 `;
 
 const Settings = () => {
   return (
     <Page title="Collector Settings">
-      <Title>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Title>
+      <Title>Forms with Generic types</Title>
 
       <CardsWrapper>
         <CardForm
@@ -26,16 +25,16 @@ const Settings = () => {
           fields={
             [
               {
-                type: "text",
-                name: "token",
-              },
-              {
                 type: "checkbox",
                 name: "debug",
               },
               {
+                type: "text",
+                name: "hs",
+              },
+              {
                 type: "file",
-                name: "collectorFiles",
+                name: "swaggers",
               },
             ] as const
           }
