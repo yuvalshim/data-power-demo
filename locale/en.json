@@ -1,0 +1,17 @@
+{
+    "oasAnalysis": {
+        "title": "OAS Analysis",
+        "runAnalysisButton": "Upload & Analyze OAS file",
+        "uploadsTable": {
+            "columns": {
+                "name": "ANALYSIS NAME",
+                "files": "NUMBER OF LOADED FILES",
+                "timeCreated": "UPLOAD",
+                "timeDesignUpdated": "LAST DESIGN",
+                "timeDriftUpdated": "LAST DRIFT",
+                "staticAnalysis": "API Design Analysis",
+                "totalDynamic": "API Drift Analysis"
+            }
+        }
+    }
+}
