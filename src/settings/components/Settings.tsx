@@ -17,7 +17,7 @@ const Settings = () => {
   const { t } = useTranslation();
   return (
     <Page title={t("settings.title")}>
-      <Title>{t("settings.forms_title")}</Title>
+      <Title>{t("settings.form_title")}</Title>
 
       <CardsWrapper>
         <CardForm
