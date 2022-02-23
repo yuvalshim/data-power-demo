@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 import { Page, CardForm } from "~/shared/components";
 import { Headline2 } from "~/shared/theme/typography";
 
@@ -14,9 +14,10 @@ const Title = styled(Headline2)`
 `;
 
 const Settings = () => {
+  const { t } = useTranslation();
   return (
-    <Page title="Collector Settings">
-      <Title>Forms with Generic types</Title>
+    <Page title={t("settings.title")}>
+      <Title>{t("settings.forms_title")}</Title>
 
       <CardsWrapper>
         <CardForm
